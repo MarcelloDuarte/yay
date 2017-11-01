@@ -20,6 +20,7 @@ $a % 42
 $a ^ 42
 $a | 42
 $a & 42
+$a . 'a'
 $a ** 42
 $b = &$a
 $a += 1
@@ -76,6 +77,9 @@ expression {
 }
 expression {
     $a&42
+}
+expression {
+    $a.'a'
 }
 expression {
     $a**42

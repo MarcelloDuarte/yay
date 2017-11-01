@@ -23,6 +23,7 @@ function phpOperator(): Parser
         token('^'),                    // ^        
         token('|'),                    // |        
         token('&'),                    // &        
+        token('.'),                    // .
         token(T_POW),                  // **        
         token(T_SR),                   // >>        
         token(T_SL),                   // <<        
@@ -72,6 +73,7 @@ function expr(): Parser
     return either(
         token(T_LNUMBER)->as('expr'),
         token(T_DNUMBER)->as('expr'),
+        string()->as('expr'),
         chain(
             chain(token(T_LIST), token('('), layer()->as('array_pair_list'), token(')'))->as('left'),
             operator('=')->as('operator'),
@@ -94,6 +96,7 @@ function expr(): Parser
             token(T_INSTANCEOF)->as('operator'),
             chain(indentation(), ns())->as('right')
         )->as('expr'),
+        chain(token(T_STRING),token('('), $expr, token(')'))->as('expr'),
         chain(token('('), $expr, token(')'))->as('expr'),
         variable()->as('expr')
     );
