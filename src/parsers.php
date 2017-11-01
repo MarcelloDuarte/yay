@@ -96,6 +96,7 @@ function expr(): Parser
             token(T_INSTANCEOF)->as('operator'),
             chain(indentation(), ns())->as('right')
         )->as('expr'),
+        chain(token(T_STRING),token('('), $expr, token(')'))->as('expr'),
         chain(token('('), $expr, token(')'))->as('expr'),
         variable()->as('expr')
     );
