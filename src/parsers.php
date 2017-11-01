@@ -23,6 +23,7 @@ function phpOperator(): Parser
         token('^'),                    // ^        
         token('|'),                    // |        
         token('&'),                    // &        
+        token('.'),                    // .
         token(T_POW),                  // **        
         token(T_SR),                   // >>        
         token(T_SL),                   // <<        
